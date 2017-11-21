@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Microsoft.Build.Framework;
 using WebApiProxy.Tasks.Infrastructure;
@@ -8,9 +9,9 @@ namespace WebApiProxy.Tasks
 {
     public class ProxyGenerationTask : ITask
     {
-        private Configuration config;
+        private List<Configuration> configList;
 
-        [Output]
+        [Output] 
         public string Filename { get; set; }
 
         [Output]
@@ -27,16 +28,18 @@ namespace WebApiProxy.Tasks
         {
             try
             {
-                config = Configuration.Load(Root);
-
-                if (config.GenerateOnBuild)
+                configList = Configuration.LoadList(Root);
+                foreach (var config in configList)
                 {
-                    var generator = new CSharpGenerator(config);
-                    var source = generator.Generate();
-                    File.WriteAllText(Filename, source);
-                    File.WriteAllText(Configuration.CacheFile, source);
-                    
+                    if (config.GenerateOnBuild)
+                    {
+                        var generator = new CSharpGenerator(config);
+                        var source = generator.Generate();
+                        File.WriteAllText(config.ConfigFileName, source);
+                        File.WriteAllText(config.CacheFileName, source);
+                    }
                 }
+
             }
             catch (ConnectionException)
             {
@@ -52,12 +55,19 @@ namespace WebApiProxy.Tasks
 
         private void tryReadFromCache()
         {
-            if (!File.Exists(Configuration.CacheFile))
+            if (configList != null)
             {
-                throw new ConnectionException(config.Endpoint);
+                foreach (var config in configList)
+                {
+                    if (!File.Exists(config.CacheFileName))
+                    {
+                        throw new ConnectionException(config.Endpoint);
+                    }
+                    var source = File.ReadAllText(config.CacheFileName);
+                    File.WriteAllText(config.ConfigFileName, source);
+                }
             }
-            var source = File.ReadAllText(Configuration.CacheFile);
-            File.WriteAllText(Filename, source);
+
         }
     }
 }

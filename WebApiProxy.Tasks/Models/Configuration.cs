@@ -13,8 +13,11 @@ namespace WebApiProxy.Tasks.Models
     [XmlRoot("proxy")]
     public class Configuration
     {
-        public const string ConfigFileName = "WebApiProxy.config";
-        public const string CacheFile = "WebApiProxy.generated.cache";
+        public const string DefaultConfigFileName = "WebApiProxy.config";
+        public const string DefaultCacheFile = "WebApiProxy.generated.cache";
+        public string ConfigFileName { get; set; }
+        //*.generated.cache
+        public string CacheFileName { get; set; }
 
         private string _clientSuffix = "Client";
         private string _name = "MyWebApiProxy";
@@ -98,16 +101,42 @@ namespace WebApiProxy.Tasks.Models
         [XmlIgnore]
         public Metadata Metadata { get; set; }
 
+        public static List<Configuration> LoadList(string root)
+        {
+            DirectoryInfo rootDirectory = new DirectoryInfo(root);
+            if (!rootDirectory.Exists)
+            {
+                throw new ConfigFileNotFoundException(root);
+            }
+            var configFiles = rootDirectory.GetFiles("*.config");
+            if (configFiles.Length == 0)
+            {
+                throw new ConfigFileNotFoundException(root);
+            }
+            List<Configuration> configList = new List<Configuration>(configFiles.Length);
+            foreach (var configFile in configFiles)
+            {
+                var serializer = new XmlSerializer(typeof(Configuration), new XmlRootAttribute("proxy"));
+                using (var reader = new StreamReader(configFile.FullName))
+                {
+                    var config = (Configuration)serializer.Deserialize(reader);
+                    config.ConfigFileName = configFile.Name;
+                    config.CacheFileName = configFile.Name.Replace(".config", ".generated.cache");
+                    configList.Add(config);
+                }
+            }
+            return configList;
+        }
+
         public static Configuration Load(string root)
         {
-            var fileName = root + Configuration.ConfigFileName;
+            var fileName = root + Configuration.DefaultConfigFileName;
 
             if (!File.Exists(fileName))
             {
                 throw new ConfigFileNotFoundException(fileName);
             }
 
-            var xml = File.ReadAllText(fileName);
             var serializer = new XmlSerializer(typeof(Configuration), new XmlRootAttribute("proxy"));
             var reader = new StreamReader(fileName);
             var config = (Configuration)serializer.Deserialize(reader);
@@ -121,6 +150,7 @@ namespace WebApiProxy.Tasks.Models
             return config;
 
         }
+
 
     }
 
