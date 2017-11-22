@@ -7,7 +7,7 @@ using WebApiProxy.Tasks.Models;
 
 namespace WebApiProxy.Tasks
 {
-    public class ProxyGenerationTask : ITask
+    public class ProxyGenerationTask :ITask
     {
         private List<Configuration> configList;
 
@@ -35,7 +35,7 @@ namespace WebApiProxy.Tasks
                     {
                         var generator = new CSharpGenerator(config);
                         var source = generator.Generate();
-                        File.WriteAllText(config.ConfigFileName, source);
+                        File.WriteAllText(config.OutputFilePath, source);
                         File.WriteAllText(config.CacheFileName, source);
                     }
                 }

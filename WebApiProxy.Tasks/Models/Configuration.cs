@@ -18,6 +18,8 @@ namespace WebApiProxy.Tasks.Models
         public string ConfigFileName { get; set; }
         //*.generated.cache
         public string CacheFileName { get; set; }
+        //$(ProjectDir)\WebApiProxy\WebApiProxy.generated.cs
+        public string OutputFilePath { get; set; }
 
         private string _clientSuffix = "Client";
         private string _name = "MyWebApiProxy";
@@ -122,6 +124,8 @@ namespace WebApiProxy.Tasks.Models
                     var config = (Configuration)serializer.Deserialize(reader);
                     config.ConfigFileName = configFile.Name;
                     config.CacheFileName = configFile.Name.Replace(".config", ".generated.cache");
+                    config.OutputFilePath = root +
+                                            configFile.Name.Replace(".config", ".generated.cs");
                     configList.Add(config);
                 }
             }
