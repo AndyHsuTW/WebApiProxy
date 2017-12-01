@@ -17,6 +17,13 @@ namespace WebApiProxy.Tasks.Infrastructure
         public string Generate()
         {
             config.Metadata = GetProxy();
+
+            config.Metadata.HostKey = config.HostKey;
+            config.Namespace = config.ConfigFileName.Replace(".config", "");
+            if (String.IsNullOrEmpty(config.Metadata.HostKey))
+            {
+                config.Metadata.HostKey = "WebApiProxyHost";
+            }
             var template = new CSharpProxyTemplate(config);
             var source = template.TransformText();
             return source;
@@ -25,8 +32,6 @@ namespace WebApiProxy.Tasks.Infrastructure
 
         private Metadata GetProxy()
         {
-            var url = string.Empty;
-
             try
             {
                 using (var client = new HttpClient())

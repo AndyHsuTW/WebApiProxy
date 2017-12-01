@@ -81,6 +81,9 @@ namespace WebApiProxy.Tasks.Models
             }
         }
 
+        [XmlAttribute("hostkey")]
+        public string HostKey { get; set; }
+
         [XmlAttribute("endpoint")]
         public string Endpoint { get; set; }
 
