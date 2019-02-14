@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("WebApi Proxy Provider")]
 [assembly: AssemblyDescription("Provides an endpoint for ASP.NET Web Api services to serve a JavaScript proxy and metadata")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("WebApiProxy")]
+[assembly: AssemblyCompany("ACTi")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

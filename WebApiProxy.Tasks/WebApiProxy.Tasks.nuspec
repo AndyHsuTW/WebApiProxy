@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ACTi.WebApiProxy.CSharp</id>
+    <version>1.3.6984.31166</version>
+    <title>WebApiProxy C# Proxy Client Generator</title>
+    <authors>ACTi</authors>
+    <owners>ACTi</owners>
+    <projectUrl>https://github.com/AndyHsuTW/WebApiProxy</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Generates a C# proxy for communicating to a RESTful Web Api that implements the WebApiProxy provider</description>
+    <releaseNotes>
+	-Add multi-proxy feature.
+	-Output .cs file for each proxy.
+	-Add 'HostKey' to proxy.config which allow you to change API server host url after you deploy to remote.
+	</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>AspNet WebAPI Proxy JavaScript CSharp</tags>
+  </metadata>
+  <files>
+    <file src="bin\$configuration$\Newtonsoft.Json.dll" target="lib\net45" />
+    <file src="bin\$configuration$\System.Net.Http.Formatting.dll" target="lib\net45" />
+    <file src="bin\$configuration$\WebApiProxy.*.dll" target="lib\net45" />
+    <file src="bin\$configuration$\WebApiProxy.*.dll" target="build" />
+    <file src="bin\$configuration$\*.targets" target="build" />
+    <file src="bin\$configuration$\System.Net.Http.Formatting.dll" target="build" />
+    <file src="bin\$configuration$\Newtonsoft.Json.dll" target="build" />
+
+    <file src="bin\$configuration$\WebApiProxy.config" target="content\WebApiProxy" />
+    <file src="bin\$configuration$\WebApiProxy.generated.cs" target="content\WebApiProxy" />
+    <file src="bin\$configuration$\webapiproxy.snippet" target="tools" />
+    <file src="bin\$configuration$\init.ps1" target="tools" />
+    <file src="bin\$configuration$\install.ps1" target="tools" />
+    <file src="bin\$configuration$\uninstall.ps1" target="tools" />
+    <file src="bin\$configuration$\WebApiProxyCSharp.psm1" target="tools" />
+  </files>
+</package>

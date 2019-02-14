@@ -41,8 +41,8 @@
     <Reference Include="Microsoft.Build" />
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -93,18 +93,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="WebApiProxy.CSharp.nuspec">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="WebApiProxy.CSharp.targets">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Templates\CSharpProxyTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <Parameters>&lt;%3fxml version="1.0" encoding="utf-16"%3f&gt;
 &lt;ArrayOfParameterStorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</Parameters>
       <LastGenOutput>CSharpProxyTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="WebApiProxy.CSharp.targets">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="webapiproxy.snippet">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -120,6 +117,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="WebApiProxy.Tasks.nuspec" />
     <None Include="WebApiProxy.Tasks.snk" />
     <None Include="WebApiProxyCSharp.psm1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

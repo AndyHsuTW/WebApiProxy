@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("WebApiProxy C# Proxy Client Generator")]
 [assembly: AssemblyDescription("Generates a C# proxy for communicating to a RESTful Web Api that implements the WebApiProxy provider")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("WebApiProxy")]
+[assembly: AssemblyCompany("ACTi")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
