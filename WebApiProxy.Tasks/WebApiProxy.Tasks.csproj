@@ -99,7 +99,8 @@
 &lt;ArrayOfParameterStorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</Parameters>
       <LastGenOutput>CSharpProxyTemplate.cs</LastGenOutput>
     </None>
-    <None Include="WebApiProxy.CSharp.targets">
+    <None Include="WebApiProxy.CSharp.nuspec" />
+    <None Include="ACTi.WebApiProxy.CSharp.targets">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -117,14 +118,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="WebApiProxy.Tasks.nuspec" />
     <None Include="WebApiProxy.Tasks.snk" />
     <None Include="WebApiProxyCSharp.psm1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

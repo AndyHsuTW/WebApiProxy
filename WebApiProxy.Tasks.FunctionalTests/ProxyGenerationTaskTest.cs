@@ -10,6 +10,7 @@ namespace WebApiProxy.Tasks.FunctionalTests
         {
             var target = new ProxyGenerationTask();
             target.Filename = "test.cs";
+            target.Root = "WebApiProxy";
             target.Execute();
         }
     }
