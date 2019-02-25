@@ -193,7 +193,8 @@ namespace WebApiProxy.Server
                 classToDef = classToDef.GetElementType();
             }
             // Is is not a .NET Framework generic, then add to the models collection.
-            if (classToDef.Namespace.StartsWith("System", StringComparison.OrdinalIgnoreCase))
+            if (classToDef.Namespace.Equals("System", StringComparison.OrdinalIgnoreCase)||
+                classToDef.Namespace.StartsWith("System.", StringComparison.OrdinalIgnoreCase))
             {
                 AddTypeToIgnore(classToDef.Name);
                 return;

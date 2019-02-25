@@ -99,7 +99,9 @@
 &lt;ArrayOfParameterStorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</Parameters>
       <LastGenOutput>CSharpProxyTemplate.cs</LastGenOutput>
     </None>
-    <None Include="WebApiProxy.CSharp.nuspec" />
+    <None Include="WebApiProxy.CSharp.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ACTi.WebApiProxy.CSharp.targets">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
